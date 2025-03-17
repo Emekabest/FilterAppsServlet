@@ -34,7 +34,7 @@ public class FilterNationality implements Filter{
        
        if(!"Nigeria".equals(userNationality.trim())){
            
-           request.setAttribute("filter-msg", "Sorry this page is restricted to n  on Nigerians");
+           request.setAttribute("filter-msg", "Sorry this page is restricted to Nigerians");
            request.getRequestDispatcher("/restrictedpage.jsp").forward(request, response);
            
            
