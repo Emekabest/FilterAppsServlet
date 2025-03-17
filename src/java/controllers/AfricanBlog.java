@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AfricanBlog", urlPatterns = {"/blogs/africanblog"})
 public class AfricanBlog extends HttpServlet  {
-    private ShutdownExample SDE = new ShutdownExample();
+    private ShutdownExample shutDownExample = new ShutdownExample();
    
      
     
@@ -24,10 +24,10 @@ public class AfricanBlog extends HttpServlet  {
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         
         
-        SDE.enteringServiceMethod();
+        shutDownExample.enteringServiceMethod();
         try{
             Thread.sleep(4000);
-            System.out.println("ServiceCounter::"+SDE.numServices());
+            System.out.println("ServiceCounter::"+shutDownExample.numServices());
             super.service(req, res);
         
         }
@@ -37,8 +37,8 @@ public class AfricanBlog extends HttpServlet  {
         }
         finally{
            
-            SDE.leavingServiceMethod();
-            System.out.println("ServiceCounter::"+SDE.numServices());
+            shutDownExample.leavingServiceMethod();
+            System.out.println("ServiceCounter::"+shutDownExample.numServices());
         }
         
     }
@@ -49,8 +49,8 @@ public class AfricanBlog extends HttpServlet  {
     @Override
     public void destroy(){
         
-        if (SDE.numServices() > 0){
-            SDE.setShuttingDown(true);
+        if (shutDownExample.numServices() > 0){
+            shutDownExample.setShuttingDown(true);
             
         }
         else{
@@ -62,7 +62,7 @@ public class AfricanBlog extends HttpServlet  {
         
         
         
-        while(SDE.numServices() > 0){
+        while(shutDownExample.numServices() > 0){
             try{
                 Thread.sleep(2000);
                 System.out.println("Thread has finished sleeping...");
